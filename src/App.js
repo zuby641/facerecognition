@@ -70,20 +70,20 @@ class App extends Component {
    }
    RouterChange=(dataa)=>
    {
-    console.log(dataa);
+    
     
     if(dataa==="signout")
     {
-            console.log(' i am inside signout');
+        
       this.setState({changeit:false});
 
     }
     if(dataa==='Home')
     {
-      console.log(' i am inside home');
-      console.log(dataa);
+      
+    
       this.setState({changeit:true});
-      console.log("now i am after the value");
+    
 
     }
     
@@ -106,24 +106,26 @@ class App extends Component {
 
   }
   render() {
+    const {  changeit,box,imageUrl,router}=this.state;
     return (
+     
 
       <div className="App">
        <Particles className="particles"
               params={particlesOptions }
               
             />
-            <Navigation  changeit={this.state.changeit} RouterChange={this.RouterChange}/>
+            <Navigation  changeit={changeit} RouterChange={this.RouterChange}/>
             {
-              this.state.router==="Home"?
+              router==="Home"?
                  <div>        
         <Logo/>
         <Rank/>
         <ImageLinkForm  onInputChange={this.onInputChange} onButtonSubmit ={this.onButtonSubmit}/>
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+        <FaceRecognition box={box} imageUrl={imageUrl}/>
  
      
-    </div>:( this.state.router==='signin'
+    </div>:( router==='signin'
               
               ?<Signform RouterChange={this.RouterChange}/>
               : <Register RouterChange={this.RouterChange}/>
