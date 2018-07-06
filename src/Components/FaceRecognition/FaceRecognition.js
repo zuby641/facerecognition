@@ -3,7 +3,7 @@ import './FaceRecognition.css'
 
 const FaceRecognition=(props)=>
 {
-console.log(props.box);
+
 return(
 <div className='center ma'>
 <div className='absolute mt2'>

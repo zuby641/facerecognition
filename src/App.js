@@ -5,6 +5,9 @@ import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 import Rank from './Components/Rank/Rank.js';
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition.js';
+import Signform from './Components/Signform/Signform.js';
+import Register from './Components/Register/Register.js';
+
 
 
 import './App.css';
@@ -17,6 +20,7 @@ const particlesOptions={
     density:{
       enable:true,
       value_area:800
+
     }
     
     }
@@ -31,14 +35,16 @@ class App extends Component {
     this.state={
       input:'',
       imageUrl:'',
-      box:{}
+      box:{},
+      router:'signin',
+      changeit:false
     }
 
   }//end of constructor
      calculateFaceLocation=(data)=>
   {
     
-    console.log("i was called by response");
+  
     const clarifaiFace= data.outputs[0].data.regions[0].region_info.bounding_box;
     const image=document.getElementById('inputImage');
     const width=Number(image.width);
@@ -58,10 +64,34 @@ class App extends Component {
 
    displayFaceBox=(box)=>
    {
-    console.log(box);
+    
     this.setState({box:box});
 
    }
+   RouterChange=(dataa)=>
+   {
+    console.log(dataa);
+    
+    if(dataa==="signout")
+    {
+            console.log(' i am inside signout');
+      this.setState({changeit:false});
+
+    }
+    if(dataa==='Home')
+    {
+      console.log(' i am inside home');
+      console.log(dataa);
+      this.setState({changeit:true});
+      console.log("now i am after the value");
+
+    }
+    
+    this.setState({ router:dataa});
+
+
+
+   }//end of routerchange fun..
   onInputChange=(event)=>
   {
 
@@ -83,12 +113,27 @@ class App extends Component {
               params={particlesOptions }
               
             />
-        
-        <Navigation/>
+            <Navigation  changeit={this.state.changeit} RouterChange={this.RouterChange}/>
+            {
+              this.state.router==="Home"?
+                 <div>        
         <Logo/>
         <Rank/>
         <ImageLinkForm  onInputChange={this.onInputChange} onButtonSubmit ={this.onButtonSubmit}/>
         <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+ 
+     
+    </div>:( this.state.router==='signin'
+              
+              ?<Signform RouterChange={this.RouterChange}/>
+              : <Register RouterChange={this.RouterChange}/>
+              )
+         
+  }
+    
+       
+      
+      
 
       </div>
     );
