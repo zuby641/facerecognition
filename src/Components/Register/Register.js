@@ -7,7 +7,7 @@ class Register extends React.Component
   super(props);
   this.state={
     Email:'',
-    Password:'',
+    password:'',
     Name:''
   }
 }
@@ -26,20 +26,22 @@ onPasswordChange=(event)=>
 {
   
 
-  this.setState({Password:event.target.value});
+  this.setState({password:event.target.value});
 }//end of onNamechange
 
 onRegisterSignin=()=>
 {
-  fetch('http://localhost:8080/register',{
+  
+  fetch('https://sheltered-tundra-60358.herokuapp.com/register',{
     'method':'post',
     'headers':{'Content-Type':'application/json'},
-    'body':JSON.stringify({ 'email':this.state.Email,'password':this.state.Password,'name':this.state.Name })
+    'body':JSON.stringify({ 'email':this.state.Email,'password':this.state.password,'name':this.state.Name })
   })
   .then(response=>response.json())
-  .then(user=>{  
+  .then(user=>{ 
 
-  if(user[0].id)
+
+  if(user.email)
   {
      this.props.loadUser(user);
        this.props.RouterChange("Home");

@@ -51,11 +51,11 @@ class App extends Component {
     this.state=initialstate;
 
   }//end of constructor
-  componentDidMount(){
-    fetch('http://localhost:8080/')
+ /* componentDidMount(){
+    fetch('https://sheltered-tundra-60358.herokuapp.com/')
     .then(response=> response.json())//find out {}problem...
     
-  }
+  }*/
 
   loadUser=(dataa)=>
   {
@@ -131,7 +131,8 @@ class App extends Component {
   {
 
     this.setState({imageUrl:this.state.input});
-          fetch('http://localhost:8080/imageurl',{
+
+          fetch('https://sheltered-tundra-60358.herokuapp.com/imageurl',{
                   'method':'post',
     'headers':{'Content-Type':'application/json'},
     'body':JSON.stringify({
@@ -145,7 +146,7 @@ class App extends Component {
              {
                 // console.log(response);
               
-                fetch('http://localhost:8080/image',{
+                fetch('https://sheltered-tundra-60358.herokuapp.com/image',{
                   'method':'put',
     'headers':{'Content-Type':'application/json'},
     'body':JSON.stringify({
