@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({user:{
 
           id:dataa.id,
-         name:dataa.Name,
+         name:dataa.name,
         email:dataa.email,
        entries:dataa.entries,
      joined:dataa.joined

@@ -7,6 +7,8 @@ import 'tachyons';
 
 const Rank=({name,entries})=>
 {
+	console.log(name);
+	console.log(entries);
 return(
 
    <div >
