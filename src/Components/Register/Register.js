@@ -40,7 +40,7 @@ onRegisterSignin=()=>
   .then(response=>response.json())
   .then(user=>{ 
 
-
+console.log(user);
   if(user.email)
   {
      this.props.loadUser(user);
